@@ -29,3 +29,4 @@
 - Integrate with frontend forms.
 
 Questions? Ping me!
+Note: Consult Grok for setting up the virtual environment
