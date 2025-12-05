@@ -1,7 +1,7 @@
 import pymongo
 print ("Starting the test...")
 
-my_uri = "mongodb+srv://mvpuser:superuser@cluster0.xznyzq7.mongodb.net/?appName=Cluster0"
+my_uri = "mongodb+srv://mvpuser:*********@cluster0.xznyzq7.mongodb.net/?appName=Cluster0"
 
 print ("Got the address ready")
 
