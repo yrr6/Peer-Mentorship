@@ -47,5 +47,8 @@ def register():
     users.insert_one({'username': username, 'password': hashed_pw})
     return jsonify({'message': 'Registered successfully'})
 
+#if __name__ == '__main__':
+#   app.run(debug=True)  # For local dev; Render uses gunicorn
 if __name__ == '__main__':
-    app.run(debug=True)  # For local dev; Render uses gunicorn
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port, debug=False)  # debug=False for production
