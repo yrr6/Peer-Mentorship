@@ -1,0 +1,5 @@
+flask
+pymongo
+dnspython  # For MongoDB SRV connections
+werkzeug
+gunicorn   # For production server on Render
