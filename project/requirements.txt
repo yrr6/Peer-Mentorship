@@ -1,5 +1,5 @@
 flask
 pymongo
-dnspython  # For MongoDB SRV connections
+dnspython
 werkzeug
-gunicorn   # For production server on Render
+gunicorn
