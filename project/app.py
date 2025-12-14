@@ -96,7 +96,7 @@ def api_register():
         'username': username,
         'password': generate_password_hash(password)
     })
-    return jsonify({'success': True})
+    return jsonify({'success': True, 'message': 'Registered successfully'})
 
 @app.route('/api/topics', methods=['POST'])
 @login_required
