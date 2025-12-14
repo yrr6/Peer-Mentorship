@@ -55,30 +55,51 @@ def login_required(f):
         return f(*args, **kwargs)
     return decorated_function
 # Route to serve the login page (modular: add similar routes for new pages)
-@app.route('/login')
+#@app.route('/login')
+#def home():
+#    if 'username' not in session:
+#        return redirect('/login')  # New: Separate login route
+#    topic_list = list(topics.find().sort('created_at', -1))  # Latest first
+#    return render_template('home.html', topics=topic_list, username=session['username'])
+
+@app.route('/')
+@login_required
 def home():
-    if 'username' not in session:
-        return redirect('/login')  # New: Separate login route
-    topic_list = list(topics.find().sort('created_at', -1))  # Latest first
-    return render_template('home.html', topics=topic_list, username=session['username'])
+    topic_list = list(topics.find().sort('created_at', -1))
+    return render_template(
+        'home.html',
+        topics=topic_list,
+        username=session['username']
+    )
 
 @app.route('/register')
 def register_page():
     return render_template('register.html')
 
 # REST API endpoint for login (POST request from JS)
+#@app.route('/api/login', methods=['POST'])
+#def login():
+#    data = request.json
+#    username = data.get('username')
+#    password = data.get('password')
+#    user = users.find_one({'username': username})
+#    if user and check_password_hash(user['password'], password):
+#        session['username'] = username  # Set session
+#        return jsonify({'message': 'Login successful!', 'success': True})
+#    else:
+#        return jsonify({'message': 'Invalid credentials', 'success': False}), 401
 @app.route('/api/login', methods=['POST'])
-def login():
+def api_login():
     data = request.json
     username = data.get('username')
     password = data.get('password')
 
     user = users.find_one({'username': username})
     if user and check_password_hash(user['password'], password):
-        session['username'] = username  # Set session
+        session['username'] = username
         return jsonify({'message': 'Login successful!', 'success': True})
-    else:
-        return jsonify({'message': 'Invalid credentials', 'success': False}), 401
+
+    return jsonify({'message': 'Invalid credentials', 'success': False}), 401
 
 @app.route('/logout')
 def logout():
