@@ -49,3 +49,37 @@ p {
   margin-top: 15px;
   font-size: 0.9em;
 }
+.topic-card {
+  border: 1px solid #ddd;
+  padding: 10px;
+  margin: 10px 0;
+}
+header {
+  margin-bottom: 20px;
+  text-align: center;
+}
+.new-topic-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background: #28a745;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+}
+.topic-card,
+.topic-detail,
+.comment {
+  border-bottom: 1px solid #ddd;
+  padding: 15px 0;
+}
+.comment {
+  margin-left: 20px;
+  background: #f9f9f9;
+  padding: 10px;
+  border-radius: 5px;
+}
+textarea {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+}

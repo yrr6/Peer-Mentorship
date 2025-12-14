@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Forum Home</title>
+    <link rel="stylesheet" href="/static/css/styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Welcome, {{ username }}! <a href="/logout">Logout</a></h1>
+      <a href="/new-topic">Create New Topic</a>
+      <h2>Topics</h2>
+      {% for topic in topics %}
+      <div class="topic-card">
+        <a href="/topic/{{ topic['_id'] }}">{{ topic['title'] }}</a>
+        <p>
+          By {{ topic['author'] }} on {{ topic['created_at'] }} | {{
+          topic['comment_count'] }} comments
+        </p>
+      </div>
+      {% endfor %}
+    </div>
+  </body>
+</html>

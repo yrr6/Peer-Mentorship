@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create New Topic</title>
+    <link rel="stylesheet" href="/static/css/styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Create New Topic</h1>
+      <form id="newTopicForm">
+        <label for="title">Title:</label>
+        <input type="text" id="title" required />
+
+        <label for="body">Body:</label>
+        <textarea id="body" rows="10" required></textarea>
+
+        <button type="submit">Post Topic</button>
+      </form>
+      <p id="message"></p>
+      <p><a href="/">Back to Home</a></p>
+    </div>
+    <script src="/static/js/new_topic.js"></script>
+  </body>
+</html>

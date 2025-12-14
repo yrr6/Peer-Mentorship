@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ topic.title }}</title>
+    <link rel="stylesheet" href="/static/css/styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <a href="/">Back to Home</a>
+      <div class="topic-detail">
+        <h1>{{ topic.title }}</h1>
+        <p>
+          By {{ topic.author }} | {{ topic.created_at.strftime('%Y-%m-%d %H:%M')
+          }}
+        </p>
+        <p>{{ topic.body | replace('\n', '<br />') | safe }}</p>
+      </div>
+
+      <section class="comments">
+        <h2>Comments ({{ comments|length }})</h2>
+        {% for comment in comments %}
+        <div class="comment">
+          <p>
+            <strong>{{ comment.author }}</strong> | {{
+            comment.created_at.strftime('%Y-%m-%d %H:%M') }}
+          </p>
+          <p>{{ comment.body | replace('\n', '<br />') | safe }}</p>
+        </div>
+        {% endfor %}
+
+        <h3>Add a Comment</h3>
+        <form id="commentForm">
+          <textarea id="commentBody" rows="5" required></textarea>
+          <input type="hidden" id="topicId" value="{{ topic._id }}" />
+          <button type="submit">Post Comment</button>
+        </form>
+        <p id="commentMessage"></p>
+      </section>
+    </div>
+    <script src="/static/js/topic.js"></script>
+  </body>
+</html>
