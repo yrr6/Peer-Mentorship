@@ -19,6 +19,41 @@ users = db['users']
 topics = db['topics']
 comments = db['comments']  
 
+
+from flask_session import Session  # New import
+from datetime import datetime  # For timestamps
+from bson.objectid import ObjectId  # For Mongo IDs
+
+app.config['SESSION_TYPE'] = 'filesystem'  # Simple for Render
+Session(app)
+
+# Collections (add these)
+topics = db['topics']
+comments = db['comments']
+
+# Update /api/login to set session
+@app.route('/api/login', methods=['POST'])
+def login():
+    # ... (existing code)
+    if user and check_password_hash(user['password'], password):
+        session['username'] = username  # Set session
+        return jsonify({'message': 'Login successful!', 'success': True})
+    # ...
+
+# Add logout route
+@app.route('/logout')
+def logout():
+    session.pop('username', None)
+    return redirect('/')
+
+# Middleware to protect routes (optional, but add to new-topic, etc.)
+def login_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if 'username' not in session:
+            return redirect('/')
+        return f(*args, **kwargs)
+    return decorated_function
 # Route to serve the login page (modular: add similar routes for new pages)
 @app.route('/login')
 def home():
