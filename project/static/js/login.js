@@ -16,6 +16,9 @@ document
     document.getElementById("message").textContent = data.message;
 
     if (data.success) {
-      // Redirect to another page, e.g., window.location.href = '/dashboard';
+      window.location.href = "/";
+    } else {
+      document.getElementById("message").textContent =
+        data.message || "Invalid username or password";
     }
   });
